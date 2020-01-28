@@ -2,7 +2,7 @@ const { expect } = require('chai')
 const listLego = require('.')
 
 
-describe('list a lego collection', () => {
+describe('list-lego', () => {
     it('should return all elements of a lego collection', () => {
         listLego()
             .then(legos => {

@@ -1,12 +1,13 @@
 const legos = require('../../../data')
 
 module.exports = function (id) {
-    return new Promise ((resolve, reject) => {
+    return (async () => {
 
-        const lego = legos.find(lego => { lego.id === id})
+        const lego = await legos.find(lego => lego.id === id)
 
-        if(!lego) return reject(new Error('lego not found'))
+        if(!lego) throw new Error('lego not found')
 
-        resolve(lego)
-    })
+        return lego
+
+    })()
 }
