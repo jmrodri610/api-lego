@@ -18,11 +18,15 @@
                 const element = {};
     
                 const id = toy.querySelector('.tag').innerText
-                const linkDetail = toy.querySelector('.itemname').querySelector('a').href
+                //const linkDetail = toy.querySelector('.itemname').querySelector('a').href
+            
+                const image = toy.querySelector('a').href
             
                 element.id = id
-                element.linkDetail = linkDetail
-                element.image = toy.querySelector('img').src
+                element.image = image
+            
+                element.thumbnail = toy.querySelector('.thumbnail').src
+            
                 element.description = toy.querySelector('.itemname').innerText
     
                 element.price = await (async () => {

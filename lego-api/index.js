@@ -1,6 +1,6 @@
 const express = require('express')
 const { name, version } = require('./package.json')
-const { listLego, retrieveLego } = require('./logic')
+const { listLego, retrieveLego, searchLego } = require('./logic')
 
 const api = express();
 
@@ -23,7 +23,7 @@ api.get('/legos', (req, res) => {
 })
 
 api.get('/lego/:id', (req, res) => {
-    debugger
+    
     const { params: { id } } = req
     try {
         retrieveLego(id)
@@ -34,6 +34,23 @@ api.get('/lego/:id', (req, res) => {
                 res.status(500).json({ message })
             })
     } catch ({ message }) {
+        res.status(400).json({ message })
+    }
+})
+
+api.get('/search', (req, res) => {
+    const {query: {q: query}} = req
+    debugger
+    try {
+
+        searchLego(query)
+        .then(results => res.json(results))
+        .catch(error => {
+            const {message} = error
+            res.status(500).json({message})
+        })
+        
+    } catch ({message}) {
         res.status(400).json({ message })
     }
 })
